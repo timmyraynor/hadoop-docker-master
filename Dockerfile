@@ -57,14 +57,14 @@ RUN echo 'export HADOOP_SSH_OPTS="-p 11126"' >> $HADOOP_PREFIX/etc/hadoop/hadoop
 RUN $HADOOP_PREFIX/bin/hdfs namenode -format
 
 # Generating ssh phraseless key
-RUN ssh-keygen -q -N "" -t rsa -C noname -f /root/.ssh/id_rsa && cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys &&chmod 0600 ~/.ssh/authorized_keys
+RUN ssh-keygen -q -N "" -t rsa -C noname -f /root/.ssh/id_rsa2 && cat /root/.ssh/id_rsa2.pub >> /root/.ssh/authorized_keys &&chmod 0600 ~/.ssh/authorized_keys
 
 ADD ssh_config /root/.ssh/config
 RUN chmod 600 /root/.ssh/config
 RUN chown root:root /root/.ssh/config
 ADD id_rsa /root/.ssh/id_rsa
 ADD id_rsa.pub /root/.ssh/id_rsa.pub
-
+RUN cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
 
 # ready on port 50070
 RUN /etc/init.d/ssh start && /usr/local/hadoop/sbin/start-dfs.sh && /usr/local/hadoop/sbin/start-yarn.sh
