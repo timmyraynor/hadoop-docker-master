@@ -21,6 +21,11 @@
         <name>yarn.nodemanager.aux-services</name>
         <value>mapreduce_shuffle</value>
     </property>
+  
+  <property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>master</value>
+  </property>
 
     <!-- add in the following section to walkaround issue (https://issues.apache.org/jira/browse/YARN-4714)-->
   <property>
