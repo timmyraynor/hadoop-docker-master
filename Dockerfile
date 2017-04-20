@@ -62,7 +62,8 @@ RUN ssh-keygen -q -N "" -t rsa -C noname -f /root/.ssh/id_rsa && cat /root/.ssh/
 ADD ssh_config /root/.ssh/config
 RUN chmod 600 /root/.ssh/config
 RUN chown root:root /root/.ssh/config
-
+ADD id_rsa /root/.ssh/id_rsa
+ADD id_rsa.pub /root/.ssh/id_rsa.pub
 
 
 # ready on port 50070
