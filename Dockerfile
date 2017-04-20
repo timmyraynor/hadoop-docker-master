@@ -64,7 +64,7 @@ RUN chmod 600 /root/.ssh/config
 RUN chown root:root /root/.ssh/config
 ADD id_rsa /root/.ssh/id_rsa
 ADD id_rsa.pub /root/.ssh/id_rsa.pub
-RUN cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
+RUN cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys && chmod 400 ~/.ssh/id_rsa
 
 # ready on port 50070
 RUN /etc/init.d/ssh start && /usr/local/hadoop/sbin/start-dfs.sh && /usr/local/hadoop/sbin/start-yarn.sh
